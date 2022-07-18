@@ -6,8 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+@Valid
 @RestController
 @RequestMapping("/api/v1/yerba")
 public class YerbaController {
@@ -20,17 +28,17 @@ public class YerbaController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<YerbaDto> getYerbaById(@PathVariable UUID id) {
+    public ResponseEntity<YerbaDto> getYerbaById(@NotNull @PathVariable UUID id) {
         return ResponseEntity.ok(yerbaService.getYerbaById(id));
     }
 
     @PostMapping
-    public ResponseEntity<YerbaDto> createYerba(@RequestBody YerbaDto yerbaDto) {
+    public ResponseEntity<YerbaDto> createYerba(@Valid @RequestBody YerbaDto yerbaDto) {
         return ResponseEntity.ok(yerbaService.createYerba(yerbaDto));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<YerbaDto> updateYerba(@PathVariable UUID id, @RequestBody YerbaDto yerbaDto) {
+    public ResponseEntity<YerbaDto> updateYerba(@PathVariable UUID id, @Valid @RequestBody YerbaDto yerbaDto) {
         return ResponseEntity.ok(yerbaService.updateYerba(id, yerbaDto));
     }
 }

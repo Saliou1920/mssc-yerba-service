@@ -1,6 +1,6 @@
 package io.saliou.msscyerbaservice.controller;
 
-import io.saliou.msscyerbaservice.model.Yerba;
+import io.saliou.msscyerbaservice.model.YerbaDto;
 import io.saliou.msscyerbaservice.model.YerbaTypeEnum;
 import io.saliou.msscyerbaservice.service.YerbaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,18 +20,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(YerbaController.class)
-class YerbaControllerTest {
+class YerbaDtoControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
     private YerbaService yerbaService;
-    private Yerba yerba;
+    private YerbaDto yerbaDto;
 
     @BeforeEach
     void setUp() {
-        yerba = Yerba.builder()
+        yerbaDto = YerbaDto.builder()
                 .id(UUID.randomUUID())
                 .name("Yerba")
                 .version(1)
@@ -46,22 +46,22 @@ class YerbaControllerTest {
 
     @Test
     void getYerbaById() throws Exception {
-        Mockito.when(yerbaService.getYerbaById(yerba.getId())).thenReturn(yerba);
-        mockMvc.perform(get("/api/v1/yerba/" + yerba.getId()))
+        Mockito.when(yerbaService.getYerbaById(yerbaDto.getId())).thenReturn(yerbaDto);
+        mockMvc.perform(get("/api/v1/yerba/" + yerbaDto.getId()))
                 .andExpect(status().isOk());
     }
 
     @Test
     void createYerba() {
-        Mockito.when(yerbaService.createYerba(yerba)).thenReturn(yerba);
+        Mockito.when(yerbaService.createYerba(yerbaDto)).thenReturn(yerbaDto);
 
-        assertEquals(yerba, yerbaService.createYerba(yerba));
+        assertEquals(yerbaDto, yerbaService.createYerba(yerbaDto));
     }
 
     @Test
     void updateYerba() {
-        Mockito.when(yerbaService.updateYerba(yerba.getId(), yerba)).thenReturn(yerba);
+        Mockito.when(yerbaService.updateYerba(yerbaDto.getId(), yerbaDto)).thenReturn(yerbaDto);
 
-        assertEquals(yerba, yerbaService.updateYerba(yerba.getId(), yerba));
+        assertEquals(yerbaDto, yerbaService.updateYerba(yerbaDto.getId(), yerbaDto));
     }
 }

@@ -1,6 +1,6 @@
 package io.saliou.msscyerbaservice.controller;
 
-import io.saliou.msscyerbaservice.model.Yerba;
+import io.saliou.msscyerbaservice.model.YerbaDto;
 import io.saliou.msscyerbaservice.service.YerbaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +20,17 @@ public class YerbaController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Yerba> getYerbaById(@PathVariable UUID id) {
+    public ResponseEntity<YerbaDto> getYerbaById(@PathVariable UUID id) {
         return ResponseEntity.ok(yerbaService.getYerbaById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Yerba> createYerba(@RequestBody Yerba yerba) {
-        return ResponseEntity.ok(yerbaService.createYerba(yerba));
+    public ResponseEntity<YerbaDto> createYerba(@RequestBody YerbaDto yerbaDto) {
+        return ResponseEntity.ok(yerbaService.createYerba(yerbaDto));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Yerba> updateYerba(@PathVariable UUID id, @RequestBody Yerba yerba) {
-        return ResponseEntity.ok(yerbaService.updateYerba(id, yerba));
+    public ResponseEntity<YerbaDto> updateYerba(@PathVariable UUID id, @RequestBody YerbaDto yerbaDto) {
+        return ResponseEntity.ok(yerbaService.updateYerba(id, yerbaDto));
     }
 }

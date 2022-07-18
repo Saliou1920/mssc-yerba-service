@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Yerba {
+public class YerbaDto {
 
     private UUID id;
     private String name;

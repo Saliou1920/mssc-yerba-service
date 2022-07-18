@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.saliou</groupId>
-    <artifactId>mssc-yerba-service</artifactId>
+    <artifactId>mssc-yerbaDto-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mssc-yerba-service</name>
-    <description>mssc-yerba-service</description>
+    <name>mssc-yerbaDto-service</name>
+    <description>mssc-yerbaDto-service</description>
     <properties>
         <java.version>11</java.version>
     </properties>

@@ -5,13 +5,13 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public class YerbaPagedList extends PageImpl<Yerba> {
+public class YerbaPagedList extends PageImpl<YerbaDto> {
 
-    public YerbaPagedList(List<Yerba> content, Pageable pageable, long total) {
+    public YerbaPagedList(List<YerbaDto> content, Pageable pageable, long total) {
         super(content, pageable, total);
     }
 
-    public YerbaPagedList(List<Yerba> content) {
+    public YerbaPagedList(List<YerbaDto> content) {
         super(content);
     }
 }

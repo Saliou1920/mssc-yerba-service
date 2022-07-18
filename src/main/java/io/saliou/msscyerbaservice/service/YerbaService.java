@@ -1,13 +1,13 @@
 package io.saliou.msscyerbaservice.service;
 
-import io.saliou.msscyerbaservice.model.Yerba;
+import io.saliou.msscyerbaservice.model.YerbaDto;
 
 import java.util.UUID;
 
 public interface YerbaService {
-    Yerba getYerbaById(UUID id);
+    YerbaDto getYerbaById(UUID id);
 
-    Yerba createYerba(Yerba yerba);
+    YerbaDto createYerba(YerbaDto yerbaDto);
 
-    Yerba updateYerba(UUID id, Yerba yerba);
+    YerbaDto updateYerba(UUID id, YerbaDto yerbaDto);
 }

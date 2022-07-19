@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.saliou</groupId>
-    <artifactId>mssc-yerba-service</artifactId>
+    <artifactId>mssc-yerbaDto-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mssc-yerba-service</name>
-    <description>mssc-yerba-service</description>
+    <name>mssc-yerbaDto-service</name>
+    <description>mssc-yerbaDto-service</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -28,6 +28,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -45,6 +50,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.3.Final</version>
         </dependency>
     </dependencies>
 

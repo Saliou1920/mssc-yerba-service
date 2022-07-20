@@ -2,18 +2,13 @@ package io.saliou.msscyerbaservice.controller;
 
 import io.saliou.msscyerbaservice.model.YerbaDto;
 import io.saliou.msscyerbaservice.service.YerbaService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Valid
 @RestController

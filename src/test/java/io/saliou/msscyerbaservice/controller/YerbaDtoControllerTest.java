@@ -17,6 +17,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(YerbaController.class)
@@ -52,8 +53,12 @@ class YerbaDtoControllerTest {
     }
 
     @Test
-    void createYerba() {
+    void createYerba() throws Exception {
         Mockito.when(yerbaService.createYerba(yerbaDto)).thenReturn(yerbaDto);
+        mockMvc.perform(post("/api/v1/yerba")
+                .contentType("application/json")
+                .content("{\"name\":\"Yerba\",\"version\":1,\"createdAt\":\"2020-01-01T00:00:00.000Z\",\"updatedAt\":\"2020-01-01T00:00:00.000Z\",\"yerbaType\":\"Argentinian\",\"upc\":123456789,\"price\":1.99,\"quantity\":1}"))
+                .andExpect(status().isOk());
 
         assertEquals(yerbaDto, yerbaService.createYerba(yerbaDto));
     }

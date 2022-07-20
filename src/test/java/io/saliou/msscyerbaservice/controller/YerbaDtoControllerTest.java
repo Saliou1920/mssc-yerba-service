@@ -16,8 +16,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(YerbaController.class)
@@ -64,8 +63,12 @@ class YerbaDtoControllerTest {
     }
 
     @Test
-    void updateYerba() {
+    void updateYerba() throws Exception {
         Mockito.when(yerbaService.updateYerba(yerbaDto.getId(), yerbaDto)).thenReturn(yerbaDto);
+        mockMvc.perform(put("/api/v1/yerba/" + yerbaDto.getId())
+                .contentType("application/json")
+                .content("{\"name\":\"Yerba\",\"version\":1,\"createdAt\":\"2020-01-01T00:00:00.000Z\",\"updatedAt\":\"2020-01-01T00:00:00.000Z\",\"yerbaType\":\"Argentinian\",\"upc\":123456789,\"price\":1.99,\"quantity\":1}"))
+                .andExpect(status().isOk());
 
         assertEquals(yerbaDto, yerbaService.updateYerba(yerbaDto.getId(), yerbaDto));
     }

@@ -15,6 +15,10 @@ import java.time.OffsetDateTime;
 @Component
 public class YerbaLoader implements CommandLineRunner {
 
+    private final static String YERBA_1_UPC = "0631234200036";
+    private final static String YERBA_2_UPC = "0631234300019";
+    private final static String YERBA_3_UPC = "0631234300010";
+
     private final YerbaRepository yerbaRepository;
 
     @Autowired
@@ -35,7 +39,7 @@ public class YerbaLoader implements CommandLineRunner {
                     .createdAt(Timestamp.valueOf(LocalDateTime.now()))
                     .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .yerbaType(YerbaTypeEnum.Argentinian)
-                    .upc(123456789L)
+                    .upc(YERBA_1_UPC)
                     .price(new BigDecimal("10.99"))
                     .minOnHand(1)
                     .quantity(1)
@@ -46,8 +50,19 @@ public class YerbaLoader implements CommandLineRunner {
                     .createdAt(Timestamp.valueOf(LocalDateTime.now()))
                     .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .yerbaType(YerbaTypeEnum.Paraguayan)
-                    .upc(323456789L)
+                    .upc(YERBA_2_UPC)
                     .price(new BigDecimal("11.99"))
+                    .minOnHand(1)
+                    .quantity(10)
+                    .build());
+            yerbaRepository.save(Yerba.builder()
+                    .name("Yerba")
+                    .version(1)
+                    .createdAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .yerbaType(YerbaTypeEnum.Paraguayan)
+                    .upc(YERBA_3_UPC)
+                    .price(new BigDecimal("12.99"))
                     .minOnHand(1)
                     .quantity(10)
                     .build());

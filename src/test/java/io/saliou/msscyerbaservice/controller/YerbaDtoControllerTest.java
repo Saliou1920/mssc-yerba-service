@@ -55,7 +55,7 @@ class YerbaDtoControllerTest {
                 .createdAt(OffsetDateTime.now())
                 .updatedAt(OffsetDateTime.now())
                 .yerbaType(YerbaTypeEnum.Argentinian)
-                .upc(123456789L)
+                .upc("123456789L")
                 .price(new BigDecimal("1.99"))
                 .quantity(1)
                 .build();

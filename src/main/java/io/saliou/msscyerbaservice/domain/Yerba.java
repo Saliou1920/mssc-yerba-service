@@ -1,19 +1,20 @@
 package io.saliou.msscyerbaservice.domain;
 
 import io.saliou.msscyerbaservice.model.YerbaTypeEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -39,8 +40,21 @@ public class Yerba {
     private YerbaTypeEnum yerbaType;
 
     @Column(unique = true)
-    private Long upc;
+    private String upc;
     private BigDecimal price;
     private Integer minOnHand;
     private Integer quantity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Yerba yerba = (Yerba) o;
+        return id != null && Objects.equals(id, yerba.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

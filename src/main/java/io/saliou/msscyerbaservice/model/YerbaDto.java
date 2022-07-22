@@ -33,10 +33,9 @@ public class YerbaDto {
 
     private YerbaTypeEnum yerbaType;
 
-    @Positive
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long upc;
+    private String upc;
 
     @NotNull
     @Positive

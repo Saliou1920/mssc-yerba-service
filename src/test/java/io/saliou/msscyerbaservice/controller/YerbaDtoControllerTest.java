@@ -59,10 +59,12 @@ class YerbaDtoControllerTest {
                 .price(new BigDecimal("1.99"))
                 .quantity(1)
                 .build();
+
     }
 
     @Test
     void getYerbaById() throws Exception {
+        System.out.println(objectMapper.writeValueAsString(yerbaDto));
         Mockito.when(yerbaService.getYerbaById(yerbaDto.getId())).thenReturn(yerbaDto);
         mockMvc.perform(get("/api/v1/yerba/{id}", yerbaDto.getId()))
                 .andExpect(status().isOk())

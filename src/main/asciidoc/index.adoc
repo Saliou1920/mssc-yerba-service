@@ -1,0 +1,67 @@
+= SFG Yerba Mate Order Service Docs
+Saliou Diop;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+Yerba Order Service application
+
+GET YERBA
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/yerba-get-by-id/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/yerba-get-by-id/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/yerba-get-by-id/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/yerba-get-by-id/response-body.adoc[]
+
+Response Fields:
+include::{snippets}/v1/yerba-get-by-id/response-fields.adoc[]
+
+NEW YERBA
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/create-yerba/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/create-yerba/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/create-yerba/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/create-yerba/response-body.adoc[]
+
+Request Fields
+include::{snippets}/v1/create-yerba/request-fields.adoc[]
+
+UPDATE YERBA
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/update-yerba/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/update-yerba/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/update-yerba/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/update-yerba/response-body.adoc[]
+
+Request Fields
+include::{snippets}/v1/update-yerba/request-fields.adoc[]

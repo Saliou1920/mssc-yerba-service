@@ -37,6 +37,7 @@ public class Yerba {
 
     @CreationTimestamp
     private Timestamp updatedAt;
+    @Enumerated(EnumType.STRING)
     private YerbaTypeEnum yerbaType;
 
     @Column(unique = true)

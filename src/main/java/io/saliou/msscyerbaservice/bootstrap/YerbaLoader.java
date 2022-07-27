@@ -15,9 +15,9 @@ import java.time.OffsetDateTime;
 @Component
 public class YerbaLoader implements CommandLineRunner {
 
-    private final static String YERBA_1_UPC = "0631234200036";
-    private final static String YERBA_2_UPC = "0631234300019";
-    private final static String YERBA_3_UPC = "0631234300010";
+    public final static String YERBA_1_UPC = "0631234200036";
+    public final static String YERBA_2_UPC = "0631234300019";
+    public final static String YERBA_3_UPC = "0631234300010";
 
     private final YerbaRepository yerbaRepository;
 

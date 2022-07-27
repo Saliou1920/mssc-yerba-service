@@ -85,4 +85,16 @@ public class YerbaServiceImpl implements YerbaService {
                         yerbas.getPageable().getPageSize()),
                 yerbas.getTotalElements());
     }
+
+    @Override
+    public YerbaDto getYerbaByUpc(String yerbaUpc, Boolean showInventoryOnHand) {
+        if (showInventoryOnHand) {
+            return yerbaMapper.yerbaToYerbaDtoWithInventory(yerbaRepository
+                    .findByUpc(yerbaUpc).orElseThrow(() -> new NotfoundException("Yerba not found"))
+            );
+        }
+        return yerbaMapper.yerbaToYerbaDto(yerbaRepository
+                .findByUpc(yerbaUpc).orElseThrow(() -> new NotfoundException("Yerba not found"))
+        );
+    }
 }

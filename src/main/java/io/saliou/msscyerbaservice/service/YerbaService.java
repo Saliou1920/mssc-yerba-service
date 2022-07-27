@@ -15,4 +15,6 @@ public interface YerbaService {
     YerbaDto updateYerba(UUID id, YerbaDto yerbaDto);
 
     YerbaPagedList listYerba(YerbaTypeEnum yerbaType, PageRequest of, Boolean showInventoryOnHand);
+
+    YerbaDto getYerbaByUpc(String yerbaUpc, Boolean showInventoryOnHand);
 }

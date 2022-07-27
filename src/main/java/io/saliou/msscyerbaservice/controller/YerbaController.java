@@ -65,4 +65,13 @@ public class YerbaController {
     public ResponseEntity<YerbaDto> updateYerba(@PathVariable UUID id, @Valid @RequestBody YerbaDto yerbaDto) {
         return ResponseEntity.ok(yerbaService.updateYerba(id, yerbaDto));
     }
+
+    @GetMapping("/yerbaUpc/{yerbaUpc}")
+    public ResponseEntity<YerbaDto> getYerbaByUpc(@PathVariable String yerbaUpc,
+            @RequestParam(value = "showInventoryOnHand", required = false ) Boolean showInventoryOnHand) {
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+        return ResponseEntity.ok(yerbaService.getYerbaByUpc(yerbaUpc, showInventoryOnHand));
+    }
 }

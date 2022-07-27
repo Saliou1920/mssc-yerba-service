@@ -7,8 +7,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface YerbaRepository extends PagingAndSortingRepository<Yerba, UUID> {
     Page<Yerba> findAllByYerbaType(YerbaTypeEnum yerbaType, Pageable pageable);
+
+    Optional<Yerba> findByUpc(String yerbaUpc);
 }

@@ -65,7 +65,7 @@ class YerbaDtoControllerTest {
     @Test
     void getYerbaById() throws Exception {
         System.out.println(objectMapper.writeValueAsString(yerbaDto));
-        Mockito.when(yerbaService.getYerbaById(yerbaDto.getId())).thenReturn(yerbaDto);
+        Mockito.when(yerbaService.getYerbaById(yerbaDto.getId(), false)).thenReturn(yerbaDto);
         mockMvc.perform(get("/api/v1/yerba/{id}", yerbaDto.getId()))
                 .andExpect(status().isOk())
                 .andDo(document("v1/yerba-get-by-id", pathParameters(

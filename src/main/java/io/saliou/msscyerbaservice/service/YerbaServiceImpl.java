@@ -8,6 +8,7 @@ import io.saliou.msscyerbaservice.model.YerbaPagedList;
 import io.saliou.msscyerbaservice.model.YerbaTypeEnum;
 import io.saliou.msscyerbaservice.repository.YerbaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class YerbaServiceImpl implements YerbaService {
     private final YerbaRepository yerbaRepository;
     private final YerbaMapper yerbaMapper;
 
+    @Cacheable(cacheNames = "yerbaCache", condition = "#showInventoryOnHand == false")
     @Override
     public YerbaDto getYerbaById(UUID id, boolean showInventoryOnHand) {
         if (showInventoryOnHand) {
@@ -53,6 +55,7 @@ public class YerbaServiceImpl implements YerbaService {
         return yerbaMapper.yerbaToYerbaDto(yerbaRepository.save(yerba));
     }
 
+    @Cacheable(cacheNames = "yerbaListCache", condition = "#showInventoryOnHand == false")
     @Override
     public YerbaPagedList listYerba(YerbaTypeEnum yerbaType, PageRequest of, Boolean showInventoryOnHand) {
         YerbaPagedList yerbaPagedList;

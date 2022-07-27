@@ -19,7 +19,7 @@ class YerbaInventoryServiceRestTemplateImplTest {
 
     @Test
     void getOnHandInventory() {
-        Integer onHandInventory = yerbaInventoryService.getOnHandInventory(UUID.randomUUID());
+        Integer onHandInventory = yerbaInventoryService.getOnHandInventory(UUID.fromString("bb7ea57d-db02-48ab-a9b7-4ccb030d3650"));
         System.out.println(onHandInventory);
     }
 }

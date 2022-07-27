@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,7 +25,8 @@ public class Yerba {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column( length = 36, name = "id", updatable = false, nullable = false)
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Column( length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
     private String name;
 
@@ -37,6 +39,7 @@ public class Yerba {
 
     @CreationTimestamp
     private Timestamp updatedAt;
+    @Enumerated(EnumType.STRING)
     private YerbaTypeEnum yerbaType;
 
     @Column(unique = true)

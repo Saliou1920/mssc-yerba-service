@@ -25,23 +25,35 @@ public class YerbaController {
     private static final Integer DEFAULT_PAGE_NUMBER = 1;
     private final YerbaService yerbaService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<YerbaPagedList> listYerba(
             @RequestParam(value = "pageSize", required = false ) Integer pageSize,
             @RequestParam(value = "pageNumber", required = false ) Integer pageNumber,
-            @RequestParam(value = "yerbaType", required = false ) YerbaTypeEnum yerbaType){
+            @RequestParam(value = "yerbaType", required = false ) YerbaTypeEnum yerbaType,
+            @RequestParam(value = "showInventoryOnHand", required = false ) Boolean showInventoryOnHand) {
+
         if (pageSize == null || pageSize < 1) {
             pageSize = DEFAULT_PAGE_SIZE;
         }
         if (pageNumber == null || pageNumber < 1) {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
-        return ResponseEntity.ok(yerbaService.listYerba(yerbaType, PageRequest.of(pageNumber, pageSize)));
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+        return ResponseEntity.ok(yerbaService.listYerba(yerbaType,
+                PageRequest.of(pageNumber, pageSize),
+                showInventoryOnHand)
+        );
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<YerbaDto> getYerbaById(@NotNull @PathVariable UUID id) {
-        return ResponseEntity.ok(yerbaService.getYerbaById(id));
+    public ResponseEntity<YerbaDto> getYerbaById(@NotNull @PathVariable UUID id,
+            @RequestParam(value = "showInventoryOnHand", required = false ) Boolean showInventoryOnHand) {
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+        return ResponseEntity.ok(yerbaService.getYerbaById(id, showInventoryOnHand));
     }
 
     @PostMapping

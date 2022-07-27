@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -24,9 +23,14 @@ public class YerbaServiceImpl implements YerbaService {
     private final YerbaMapper yerbaMapper;
 
     @Override
-    public YerbaDto getYerbaById(UUID id) {
-        return yerbaMapper.yerbaToYerbaDto(
-                yerbaRepository.findById(id).orElseThrow(() -> new NotfoundException("Yerba not found"))
+    public YerbaDto getYerbaById(UUID id, boolean showInventoryOnHand) {
+        if (showInventoryOnHand) {
+            return yerbaMapper.yerbaToYerbaDtoWithInventory(yerbaRepository
+                    .findById(id).orElseThrow(() -> new NotfoundException("Yerba not found"))
+            );
+        }
+        return yerbaMapper.yerbaToYerbaDto(yerbaRepository
+                .findById(id).orElseThrow(() -> new NotfoundException("Yerba not found"))
         );
     }
 
@@ -50,7 +54,7 @@ public class YerbaServiceImpl implements YerbaService {
     }
 
     @Override
-    public YerbaPagedList listYerba(YerbaTypeEnum yerbaType, PageRequest of) {
+    public YerbaPagedList listYerba(YerbaTypeEnum yerbaType, PageRequest of, Boolean showInventoryOnHand) {
         YerbaPagedList yerbaPagedList;
         Page<Yerba> yerbas;
         if (yerbaType == null) {
@@ -58,7 +62,18 @@ public class YerbaServiceImpl implements YerbaService {
         } else {
             yerbas = yerbaRepository.findAllByYerbaType(yerbaType, of);
         }
-        yerbaPagedList = new YerbaPagedList(yerbas.getContent()
+
+        if (showInventoryOnHand) {
+            return yerbaPagedList = new YerbaPagedList(yerbas.getContent()
+                    .stream()
+                    .map(yerbaMapper::yerbaToYerbaDtoWithInventory)
+                    .collect(Collectors.toList()),
+                    PageRequest.of(
+                            yerbas.getPageable().getPageNumber(),
+                            yerbas.getPageable().getPageSize()),
+                    yerbas.getTotalElements());
+        }
+        return yerbaPagedList = new YerbaPagedList(yerbas.getContent()
                 .stream()
                 .map(yerbaMapper::yerbaToYerbaDto)
                 .collect(Collectors.toList()),
@@ -66,6 +81,5 @@ public class YerbaServiceImpl implements YerbaService {
                         yerbas.getPageable().getPageNumber(),
                         yerbas.getPageable().getPageSize()),
                 yerbas.getTotalElements());
-        return yerbaPagedList;
     }
 }

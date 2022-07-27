@@ -12,13 +12,18 @@ public abstract class YerbaMapperDecorator implements YerbaMapper {
 
     @Override
     public YerbaDto yerbaToYerbaDto(Yerba yerba) {
-        YerbaDto yerbaDto = yerbaMapper.yerbaToYerbaDto(yerba);
-        yerbaDto.setQuantity(yerbaInventoryService.getOnHandInventory(yerba.getId()));
-        return yerbaDto;
+        return yerbaMapper.yerbaToYerbaDto(yerba);
     }
 
     @Override
     public Yerba yerbaDtoToYerba(YerbaDto yerbaDto) {
         return yerbaMapper.yerbaDtoToYerba(yerbaDto);
+    }
+
+    @Override
+    public YerbaDto yerbaToYerbaDtoWithInventory(Yerba yerba) {
+        YerbaDto yerbaDto = yerbaMapper.yerbaToYerbaDto(yerba);
+        yerbaDto.setQuantity(yerbaInventoryService.getOnHandInventory(yerba.getId()));
+        return yerbaDto;
     }
 }

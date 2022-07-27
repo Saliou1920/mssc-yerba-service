@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
 public interface YerbaMapper {
 
         YerbaDto yerbaToYerbaDto(Yerba yerba);
+        YerbaDto yerbaToYerbaDtoWithInventory(Yerba yerba);
 
         Yerba yerbaDtoToYerba(YerbaDto yerbaDto);
 

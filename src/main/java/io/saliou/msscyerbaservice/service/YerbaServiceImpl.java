@@ -86,6 +86,7 @@ public class YerbaServiceImpl implements YerbaService {
                 yerbas.getTotalElements());
     }
 
+    @Cacheable(cacheNames = "yerbaUpcCache", condition = "#showInventoryOnHand == false")
     @Override
     public YerbaDto getYerbaByUpc(String yerbaUpc, Boolean showInventoryOnHand) {
         if (showInventoryOnHand) {
